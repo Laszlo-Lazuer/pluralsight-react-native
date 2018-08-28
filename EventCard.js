@@ -30,6 +30,25 @@ export default function EventCard({ event }) {
                 <Text style={styles.date}>{formatDate(event.date)}</Text>
                 <Text style={styles.title}>{event.title}</Text>
             </View>
+        <View style={styles.counterContainer}>
+            <View styles={styles.counter}>
+                <Text style={styles.counterText}>{days}</Text>
+                <Text style={styles.counterLabel}>Days</Text>
+            </View>
+                <View styles={styles.counter}>
+                    <Text style={styles.counterText}>{hours}</Text>
+                    <Text style={styles.counterLabel}>Hours</Text>
+                </View>
+
+                <View styles={styles.counter}>
+                    <Text style={styles.counterText}>{minutes}</Text>
+                    <Text style={styles.counterLabel}>Minutes</Text>
+                </View>
+                <View styles={styles.counter}>
+                    <Text style={styles.counterText}>{seconds}</Text>
+                    <Text style={styles.counterLabel}>Seconds</Text>
+                </View>
+            </View>
         </View>
     )
 }
