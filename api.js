@@ -1,19 +1,38 @@
+import uuid from 'uuid';
 import moment from 'moment';
-import Expo from 'expo';
+import Expo from "expo";
 
 const { manifest } = Expo.Constants;
-// Not Working
-// const api = manifest.packagerOpts.dev
-//   ? manifest.debuggerHost.split(':').shift().concat(':3000')
-//   : 'productionurl.com'
-  
-const url = "https://my-json-server.typicode.com/Laszlo-Lazuer/pluralsight-react-native/events";
+const api = manifest.packagerOpts.dev
+  ? manifest.debuggerHost.split(`:`).shift().concat(`:3000`)
+  : `api.example.com`;
+// const api = "https://api.myjson.com/bins/n3nas/";
+const url = `http://${api}/events`;
+// const url = "http://snowy-fire-7555.getsandbox.com/events";
 
 export function getEvents() {
   return fetch(url)
   .then(response => response.json())
-  .then(events => events.map(e => ({ ...e,date: new Date(e.date)})));
+  .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
 }
+
+export function saveEvent({ title, date }) {
+  return fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      date,
+      id: uuid(),
+    }),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  })
+  .then(res => res.json())
+  alert(res)
+  .catch(error => console.error('Error:', error));
+}
+
 
 export function formatDate(dateString) {
   const parsed = moment(new Date(dateString));
