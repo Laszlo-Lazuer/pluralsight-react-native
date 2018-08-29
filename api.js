@@ -1,14 +1,7 @@
 import uuid from 'uuid';
 import moment from 'moment';
-import Expo from "expo";
 
-const { manifest } = Expo.Constants;
-const api = manifest.packagerOpts.dev
-  ? manifest.debuggerHost.split(`:`).shift().concat(`:3000`)
-  : `api.example.com`;
-// const api = "https://api.myjson.com/bins/n3nas/";
-const url = `http://${api}/events`;
-// const url = "http://snowy-fire-7555.getsandbox.com/events";
+const url ='https://squirrel-db.herokuapp.com/events';
 
 export function getEvents() {
   return fetch(url)
@@ -29,7 +22,6 @@ export function saveEvent({ title, date }) {
     })
   })
   .then(res => res.json())
-  alert(res)
   .catch(error => console.error('Error:', error));
 }
 
