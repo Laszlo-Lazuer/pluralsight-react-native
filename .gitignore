@@ -5,6 +5,7 @@
 
 # dependencies
 /node_modules
+serverInfo.js
 
 # misc
 .env.local

@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 import moment from 'moment';
-
-const url ='https://squirrel-db.herokuapp.com/events';
+import { url } from './serverInfo';
 
 export function getEvents() {
   return fetch(url)
